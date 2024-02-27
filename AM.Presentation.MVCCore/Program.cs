@@ -1,15 +1,11 @@
-using ArticleManagement.Application;
-using ArticleManagement.Application.Contracts.ArticleCategory;
-using ArticleManagement.Domain.ArticleCategoryAgg;
-using ArticleManagement.Infrastructure.EFCore.Repositories;
+using ArticleManagement.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-builder.Services.AddTransient<IArticleCategoryApplication, ArticleCategoryApplication>();
-builder.Services.AddTransient<IArticleCategoryRepository, ArticleCategoryRepository>();
+Bootstrapper.Config(builder.Services, builder.Configuration.GetConnectionString("MasterBloogerDb"));
 
 var app = builder.Build();
 

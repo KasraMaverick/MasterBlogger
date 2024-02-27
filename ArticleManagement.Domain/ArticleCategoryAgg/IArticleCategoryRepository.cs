@@ -1,8 +1,13 @@
-﻿namespace ArticleManagement.Domain.ArticleCategoryAgg
+﻿using System.Xml.Serialization;
+
+namespace ArticleManagement.Domain.ArticleCategoryAgg
 {
     public interface IArticleCategoryRepository
     {
-        public List<ArticleCategory> GetAllArticleCategories();
-        public void Create(ArticleCategory entity);
+        List<ArticleCategory> GetAllArticleCategories();
+        ArticleCategory Get(long id);
+        void Create(ArticleCategory entity);
+        void Save();
+        
     }
 }

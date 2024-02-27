@@ -14,12 +14,22 @@ namespace ArticleManagement.Infrastructure.EFCore.Repositories
         public void Create(ArticleCategory entity)
         {
             _context.ArticleCategories.Add(entity);
-            _context.SaveChanges();
+            Save();
+        }
+
+        public ArticleCategory Get(long id)
+        {
+            return _context.ArticleCategories.FirstOrDefault(x => x.Id == id);
         }
 
         public List<ArticleCategory> GetAllArticleCategories()
         {
-            return _context.ArticleCategories.ToList();
+            return _context.ArticleCategories.OrderByDescending(x => x.Id).ToList();
+        }
+
+        public void Save()
+        {
+            _context.SaveChanges();
         }
     }
 }

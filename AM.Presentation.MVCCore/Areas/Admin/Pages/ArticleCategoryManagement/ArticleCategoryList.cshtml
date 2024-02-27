@@ -1,4 +1,44 @@
 ﻿@page
 @model AM.Presentation.MVCCore.Areas.Admin.Pages.ArticleCategoryManagement.ArticleCategoryListModel
-@{
-}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="float-left">Article Category List</h3>
+        <div class="float-right">
+            <a class="btn btn-success" asp-page="/ArticleCategoryManagement/CreateArticleCategory" asp-area="Admin">Create New</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Created Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var articleCategory in Model.ArticleCategories)
+                {
+                    <tr>
+                        <td>@articleCategory.Id</td>
+                        <td>@articleCategory.Title</td>
+                        <td>
+                            @if (articleCategory.IsDeleted)
+                            {
+                                <i class="fa fa-close fa-2x text-danger"></i>
+                            }
+                            else
+                            {
+                                <i class="fa fa-close fa-2x text-success"></i>
+                            }
+                        </td>
+                        <td>@articleCategory.CreatedDate</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

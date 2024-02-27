@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ArticleManagement.Application.Contracts\ArticleManagement.Application.Contracts.csproj" />
     <ProjectReference Include="..\ArticleManagement.Application\ArticleManagement.Application.csproj" />
+    <ProjectReference Include="..\ArticleManagement.Configuration\ArticleManagement.Configuration.csproj" />
     <ProjectReference Include="..\ArticleManagement.Infrastructure.EFCore\ArticleManagement.Infrastructure.EFCore.csproj" />
   </ItemGroup>
 

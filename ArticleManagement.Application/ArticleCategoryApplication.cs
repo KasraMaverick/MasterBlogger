@@ -11,6 +11,13 @@ namespace ArticleManagement.Application
         {
             _articleCategoryRepository = articleCategoryRepository;
         }
+
+        public void Create(CreateArticleCategory command)
+        {
+            var articleCategory = new ArticleCategory(command.Title);
+            _articleCategoryRepository.Create(articleCategory);
+        }
+
         public List<ArticleCategoryViewModel> GetAllArticleCategories()
         {
             var articleCategories = _articleCategoryRepository.GetAllArticleCategories();
@@ -26,6 +33,23 @@ namespace ArticleManagement.Application
                 });
             }
             return result;
+        }
+
+        public RenameArticleCategory GetArticleCategory(long id)
+        {
+            var articleCategory = _articleCategoryRepository.Get(id);
+            return new RenameArticleCategory
+            {
+                Id = articleCategory.Id,
+                Title = articleCategory.Title,
+            };
+        }
+
+        public void Rename(RenameArticleCategory command)
+        {
+            var articleCategory = _articleCategoryRepository.Get(command.Id);
+            articleCategory.Rename(command.Title);
+            _articleCategoryRepository.Save();
         }
     }
 }
