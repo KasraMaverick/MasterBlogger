@@ -1,4 +1,5 @@
-﻿using ArticleManagement.Domain.ArticleCategoryAgg.Services;
+﻿using ArticleManagement.Domain.ArticleAgg;
+using ArticleManagement.Domain.ArticleCategoryAgg.Services;
 
 namespace ArticleManagement.Domain.ArticleCategoryAgg
 {
@@ -8,6 +9,7 @@ namespace ArticleManagement.Domain.ArticleCategoryAgg
         public string Title { get;private set; }   
         public bool IsDeleted { get; private set; }
         public DateTime CreatedDate { get; private set; }
+        public ICollection<Article> Articles { get; private set; }
 
         public ArticleCategory(string title, IArticleCategoryValidatorService validatorService)
         {
@@ -16,6 +18,7 @@ namespace ArticleManagement.Domain.ArticleCategoryAgg
             Title = title;
             IsDeleted = false;
             CreatedDate = DateTime.Now;
+            Articles = new List<Article>();
         }
         public void Rename(string title)
         {

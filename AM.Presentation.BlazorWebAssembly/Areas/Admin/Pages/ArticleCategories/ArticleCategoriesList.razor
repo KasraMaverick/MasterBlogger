@@ -1,0 +1,86 @@
+﻿@using ArticleManagement.Application;
+@using ArticleManagement.Domain.ArticleCategoryAgg
+@using ArticleManagement.Application.Contracts.ArticleCategory
+@inject ArticleCategoryApplication _articleCategoryApplication
+
+@page "/articlecategories"
+<div class="card">
+    <div class="card-header">
+        <h3 class="float-left">Article Category List</h3>
+        <div class="float-right">
+            <a class="btn btn-success" asp-page="/ArticleCategoryManagement/CreateArticleCategory" asp-area="Admin">Create New</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Created Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var articleCategory in Model.ArticleCategories)
+                {
+                    <tr>
+                        <td>@articleCategory.Id</td>
+                        <td>@articleCategory.Title</td>
+                        <td>
+                            @if (articleCategory.IsDeleted)
+                            {
+                                <i class="fa fa-close fa-2x text-danger"></i>
+                            }
+                            else
+                            {
+                                <i class="fa fa-close fa-2x text-success"></i>
+                            }
+                        </td>
+                        <td>@articleCategory.CreatedDate</td>
+                        <td>
+                            <a class="btn btn-warning float-left m-3" asp-page="./EditArticleCategory" asp-route-id="@articleCategory.Id">Rename</a>
+                            @if (articleCategory.IsDeleted)
+                            {
+                                <form method="post" asp-page-handler="Activate" class="float-left">
+                                    <button class="btn btn-success">Activate</button>
+                                    <input type="hidden" name="id" value="@articleCategory.Id" />
+                                </form>
+                            }
+                            else
+                            {
+                                <form method="post" asp-page-handler="Remove" class="float-left">
+                                    <button class="btn btn-danger">Remove</button>
+                                    <input type="hidden" name="id" value="@articleCategory.Id" />
+                                </form>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+
+    public List<ArticleCategoryViewModel> ArticleCategories { get; set; }
+
+    protected override void OnInitialized()
+    {
+        ArticleCategories = _articleCategoryApplication.GetAllArticleCategories();
+    }
+
+    }
+    // public RedirectToPageResult OnPostRemove(long id)
+    // {
+    //     _articleCategoryApplication.Remove(id);
+    //     return RedirectToPage("./ArticleCategoryList");
+
+    // }
+    // public RedirectToPageResult OnPostActivate(long id)
+    // {
+    //     _articleCategoryApplication.Activate(id);
+    //     return RedirectToPage("./ArticleCategoryList");
+    // }
+}
