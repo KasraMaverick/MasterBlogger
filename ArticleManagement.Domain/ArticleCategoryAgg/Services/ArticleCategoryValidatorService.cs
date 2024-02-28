@@ -2,7 +2,7 @@
 
 namespace ArticleManagement.Domain.ArticleCategoryAgg.Services
 {
-    class ArticleCategoryValidatorService : IArticleCategoryValidatorService
+    public class ArticleCategoryValidatorService : IArticleCategoryValidatorService
     {
         private readonly IArticleCategoryRepository _articleCategoryRepository;
         public ArticleCategoryValidatorService(IArticleCategoryRepository articleCategoryRepository)
