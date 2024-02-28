@@ -1,4 +1,5 @@
 ﻿using ArticleManagement.Domain.ArticleCategoryAgg;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ArticleManagement.Infrastructure.EFCore.Repositories
 {
@@ -30,6 +31,11 @@ namespace ArticleManagement.Infrastructure.EFCore.Repositories
         public void Save()
         {
             _context.SaveChanges();
+        }
+
+        public bool Exists(string title)
+        {
+            return _context.ArticleCategories.Any(x => x.Title == title);   
         }
     }
 }

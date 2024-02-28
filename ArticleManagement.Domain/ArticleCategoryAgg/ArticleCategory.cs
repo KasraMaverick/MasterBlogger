@@ -1,4 +1,6 @@
-﻿namespace ArticleManagement.Domain.ArticleCategoryAgg
+﻿using ArticleManagement.Domain.ArticleCategoryAgg.Services;
+
+namespace ArticleManagement.Domain.ArticleCategoryAgg
 {
     public class ArticleCategory
     {
@@ -7,14 +9,17 @@
         public bool IsDeleted { get; private set; }
         public DateTime CreatedDate { get; private set; }
 
-        public ArticleCategory(string title)
+        public ArticleCategory(string title, IArticleCategoryValidatorService validatorService)
         {
+            GuardAgainstEmptyTitle(title);
+            validatorService.CheckIfRecordAlreadyExists(title);
             Title = title;
             IsDeleted = false;
             CreatedDate = DateTime.Now;
         }
         public void Rename(string title)
         {
+            GuardAgainstEmptyTitle(title);
             Title = title;
         }
         public void Remove()
@@ -24,6 +29,13 @@
         public void Activate()
         {
             IsDeleted = false;
+        }
+        void GuardAgainstEmptyTitle(string title)
+        {
+            if (string.IsNullOrWhiteSpace(title))
+            {
+                throw new ArgumentNullException();
+            }
         }
     }
 }

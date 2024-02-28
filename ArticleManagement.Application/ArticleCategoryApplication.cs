@@ -1,5 +1,6 @@
 ﻿using ArticleManagement.Application.Contracts.ArticleCategory;
 using ArticleManagement.Domain.ArticleCategoryAgg;
+using ArticleManagement.Domain.ArticleCategoryAgg.Services;
 using System.Globalization;
 
 namespace ArticleManagement.Application
@@ -7,9 +8,11 @@ namespace ArticleManagement.Application
     public class ArticleCategoryApplication : IArticleCategoryApplication
     {
         private readonly IArticleCategoryRepository _articleCategoryRepository;
-        public ArticleCategoryApplication(IArticleCategoryRepository articleCategoryRepository)
+        private readonly IArticleCategoryValidatorService _articleCategoryValidatorService;
+        public ArticleCategoryApplication(IArticleCategoryRepository articleCategoryRepository, IArticleCategoryValidatorService articleCategoryValidatorService)
         {
             _articleCategoryRepository = articleCategoryRepository;
+            _articleCategoryValidatorService = articleCategoryValidatorService;
         }
 
         public void Activate(long id)
@@ -21,7 +24,7 @@ namespace ArticleManagement.Application
 
         public void Create(CreateArticleCategory command)
         {
-            var articleCategory = new ArticleCategory(command.Title);
+            var articleCategory = new ArticleCategory(command.Title, _articleCategoryValidatorService);
             _articleCategoryRepository.Create(articleCategory);
         }
 

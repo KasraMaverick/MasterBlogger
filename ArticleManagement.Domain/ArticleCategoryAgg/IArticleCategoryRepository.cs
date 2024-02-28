@@ -8,6 +8,7 @@ namespace ArticleManagement.Domain.ArticleCategoryAgg
         ArticleCategory GetArticleCategory(long id);
         void Create(ArticleCategory entity);
         void Save();
+        bool Exists(string title);
         
     }
 }
