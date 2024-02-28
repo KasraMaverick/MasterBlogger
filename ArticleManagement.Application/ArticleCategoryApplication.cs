@@ -12,6 +12,13 @@ namespace ArticleManagement.Application
             _articleCategoryRepository = articleCategoryRepository;
         }
 
+        public void Activate(long id)
+        {
+            var articleCategory = _articleCategoryRepository.GetArticleCategory(id);
+            articleCategory.Activate();
+            _articleCategoryRepository.Save();
+        }
+
         public void Create(CreateArticleCategory command)
         {
             var articleCategory = new ArticleCategory(command.Title);
@@ -37,7 +44,7 @@ namespace ArticleManagement.Application
 
         public RenameArticleCategory GetArticleCategory(long id)
         {
-            var articleCategory = _articleCategoryRepository.Get(id);
+            var articleCategory = _articleCategoryRepository.GetArticleCategory(id);
             return new RenameArticleCategory
             {
                 Id = articleCategory.Id,
@@ -45,9 +52,16 @@ namespace ArticleManagement.Application
             };
         }
 
+        public void Remove(long id)
+        {
+            var articleCategory = _articleCategoryRepository.GetArticleCategory(id);
+            articleCategory.Remove();
+            _articleCategoryRepository.Save();
+        }
+
         public void Rename(RenameArticleCategory command)
         {
-            var articleCategory = _articleCategoryRepository.Get(command.Id);
+            var articleCategory = _articleCategoryRepository.GetArticleCategory(command.Id);
             articleCategory.Rename(command.Title);
             _articleCategoryRepository.Save();
         }

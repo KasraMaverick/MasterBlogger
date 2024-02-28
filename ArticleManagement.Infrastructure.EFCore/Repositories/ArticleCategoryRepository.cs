@@ -17,7 +17,7 @@ namespace ArticleManagement.Infrastructure.EFCore.Repositories
             Save();
         }
 
-        public ArticleCategory Get(long id)
+        public ArticleCategory GetArticleCategory(long id)
         {
             return _context.ArticleCategories.FirstOrDefault(x => x.Id == id);
         }
