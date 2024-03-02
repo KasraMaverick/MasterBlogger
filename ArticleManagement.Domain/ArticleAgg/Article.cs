@@ -37,5 +37,13 @@ namespace ArticleManagement.Domain.ArticleAgg
             ArticleCategoryId = articleCategoryId;
             Image = image;
         }
+        public void Remove()
+        {
+            IsDeleted = true;
+        }
+        public void Activate()
+        {
+            IsDeleted = false;
+        }
     }
 }
