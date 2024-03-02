@@ -21,6 +21,8 @@ namespace ArticleManagement.Domain.ArticleAgg
 
         public Article(string title, string shortDescription, string image, string content, long articleCategoryId)
         {
+            Validate(title, articleCategoryId);
+
             Title = title;
             ShortDescription = shortDescription;
             Content = content;
@@ -31,6 +33,8 @@ namespace ArticleManagement.Domain.ArticleAgg
         }
         public void Edit(string title, string shortDescription, string image, string content, long articleCategoryId)
         {
+            Validate(title, articleCategoryId);
+
             Title = title;
             ShortDescription = shortDescription;
             Content = content;
@@ -44,6 +48,17 @@ namespace ArticleManagement.Domain.ArticleAgg
         public void Activate()
         {
             IsDeleted = false;
+        }
+        public static void Validate(string title, long articleCategoryId)
+        {
+            if (string.IsNullOrWhiteSpace(title))
+            {
+                throw new ArgumentNullException();
+            }
+            if (articleCategoryId == 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }

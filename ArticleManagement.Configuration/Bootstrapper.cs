@@ -2,6 +2,7 @@
 using ArticleManagement.Application.Contracts.Article;
 using ArticleManagement.Application.Contracts.ArticleCategory;
 using ArticleManagement.Domain.ArticleAgg;
+using ArticleManagement.Domain.ArticleAgg.Services;
 using ArticleManagement.Domain.ArticleCategoryAgg;
 using ArticleManagement.Domain.ArticleCategoryAgg.Services;
 using ArticleManagement.Infrastructure.EFCore;
@@ -21,6 +22,7 @@ namespace ArticleManagement.Configuration
 
             services.AddTransient<IArticleApplication, ArticleApplication>();
             services.AddTransient<IArticleRepository, ArticleRepository>();
+            services.AddTransient<IArticleValidatorService, ArticleValidatorService>();
 
             services.AddDbContext<ArticleContext>(options => options.UseSqlServer(connectionString));
         }
