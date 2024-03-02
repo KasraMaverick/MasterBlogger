@@ -17,7 +17,12 @@ namespace ArticleManagement.Infrastructure.EFCore.Repositories
         public void CreateAndSave(Article entity)
         {
             _context.Articles.Add(entity);
-            _context.SaveChanges();
+            Save();
+        }
+
+        public Article Get(long id)
+        {
+            return _context.Articles.FirstOrDefault(x => x.Id == id);
         }
 
         public List<ArticleViewModel> GetArticleViewModels()
@@ -30,6 +35,11 @@ namespace ArticleManagement.Infrastructure.EFCore.Repositories
                 IsDeleted = x.IsDeleted,
                 CreatedDate = x.CreatedDate.ToString(CultureInfo.InvariantCulture)
             }).ToList();
+        }
+
+        public void Save()
+        {
+            _context.SaveChanges();
         }
     }
 }

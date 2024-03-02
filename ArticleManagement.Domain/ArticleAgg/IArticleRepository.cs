@@ -6,5 +6,8 @@ namespace ArticleManagement.Domain.ArticleAgg
     {
         List<ArticleViewModel> GetArticleViewModels();
         void CreateAndSave(Article entity);
+        Article Get(long id);
+        void Save();
+
     }
 }

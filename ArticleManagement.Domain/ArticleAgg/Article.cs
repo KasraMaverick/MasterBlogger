@@ -11,6 +11,7 @@ namespace ArticleManagement.Domain.ArticleAgg
         public string Content { get; private set; }
         public bool IsDeleted { get; private set; }
         public DateTime CreatedDate { get; private set; }
+        
         public long ArticleCategoryId { get; private set; }
         public ArticleCategory ArticleCategory { get; private set; }
 
@@ -27,6 +28,14 @@ namespace ArticleManagement.Domain.ArticleAgg
             Image = image;
             IsDeleted = false;
             CreatedDate = DateTime.Now; 
+        }
+        public void Edit(string title, string shortDescription, string image, string content, long articleCategoryId)
+        {
+            Title = title;
+            ShortDescription = shortDescription;
+            Content = content;
+            ArticleCategoryId = articleCategoryId;
+            Image = image;
         }
     }
 }
