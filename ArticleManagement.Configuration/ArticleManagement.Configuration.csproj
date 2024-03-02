@@ -14,6 +14,7 @@
     <ProjectReference Include="..\ArticleManagement.Application.Contracts\ArticleManagement.Application.Contracts.csproj" />
     <ProjectReference Include="..\ArticleManagement.Application\ArticleManagement.Application.csproj" />
     <ProjectReference Include="..\ArticleManagement.Infrastructure.EFCore\ArticleManagement.Infrastructure.EFCore.csproj" />
+    <ProjectReference Include="..\ArticleManagement.Infrastructure.Query\ArticleManagement.Infrastructure.Query.csproj" />
   </ItemGroup>
 
 </Project>

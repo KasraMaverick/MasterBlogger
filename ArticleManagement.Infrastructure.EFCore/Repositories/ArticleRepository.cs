@@ -20,6 +20,11 @@ namespace ArticleManagement.Infrastructure.EFCore.Repositories
             Save();
         }
 
+        public bool Exists(string title)
+        {
+            return _context.Articles.Any(a => a.Title == title);
+        }
+
         public Article Get(long id)
         {
             return _context.Articles.FirstOrDefault(x => x.Id == id);

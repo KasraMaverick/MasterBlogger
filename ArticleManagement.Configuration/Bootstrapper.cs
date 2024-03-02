@@ -7,6 +7,7 @@ using ArticleManagement.Domain.ArticleCategoryAgg;
 using ArticleManagement.Domain.ArticleCategoryAgg.Services;
 using ArticleManagement.Infrastructure.EFCore;
 using ArticleManagement.Infrastructure.EFCore.Repositories;
+using ArticleManagement.Infrastructure.Query;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,6 +24,8 @@ namespace ArticleManagement.Configuration
             services.AddTransient<IArticleApplication, ArticleApplication>();
             services.AddTransient<IArticleRepository, ArticleRepository>();
             services.AddTransient<IArticleValidatorService, ArticleValidatorService>();
+
+            services.AddTransient<IArticleQuery, ArticleQuery>();
 
             services.AddDbContext<ArticleContext>(options => options.UseSqlServer(connectionString));
         }
