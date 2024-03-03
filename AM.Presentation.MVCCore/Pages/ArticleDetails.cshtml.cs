@@ -1,5 +1,4 @@
-﻿using MB.Application.Contracts.Comment;
-using MB.Infrastructure.Query;
+﻿using ArticleManagement.Infrastructure.Query;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 

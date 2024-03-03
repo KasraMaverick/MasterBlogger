@@ -11,11 +11,26 @@ namespace ArticleManagement.Infrastructure.Query
         {
             _context = context;
         }
+
+        public ArticleQueryView GetArticle(long id)
+        {
+            return _context.Articles.Include(c => c.ArticleCategory).Select(x => new ArticleQueryView
+            {
+                Id = x.Id,
+                Title = x.Title,
+                ArticleCategory = x.ArticleCategory.Title,
+                CreatedDate = x.CreatedDate.ToString(CultureInfo.InvariantCulture),
+                ShortDescription = x.ShortDescription,
+                Image = x.Image,
+                Content = x.Content
+            }).FirstOrDefault(x => x.Id == id);
+        }
+
         public List<ArticleQueryView> GetArticles()
         {
             return _context.Articles.Include(c => c.ArticleCategory).Select(x => new ArticleQueryView
             {
-                Id  = x.Id,
+                Id = x.Id,
                 Title = x.Title,
                 ArticleCategory = x.ArticleCategory.Title,
                 CreatedDate = x.CreatedDate.ToString(CultureInfo.InvariantCulture),

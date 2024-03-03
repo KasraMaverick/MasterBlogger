@@ -14,5 +14,6 @@ namespace ArticleManagement.Infrastructure.Query
         public string ArticleCategory { get; set; }
         public string CreatedDate { get; set; }
         public string Image { get; set; }
+        public string Content { get; set; }
     }
 }
