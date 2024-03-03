@@ -9,5 +9,11 @@ namespace ArticleManagement.Infrastructure.EFCore.Repositories
         {
             _context = context;
         }
+
+        public void CreateAndSaveComment(Comment entity)
+        {
+            _context.Comments.Add(entity);
+            _context.SaveChanges();
+        }
     }
 }

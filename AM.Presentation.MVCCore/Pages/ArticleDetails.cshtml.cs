@@ -1,4 +1,5 @@
-﻿using ArticleManagement.Infrastructure.Query;
+﻿using ArticleManagement.Application.Contracts.Comment;
+using ArticleManagement.Infrastructure.Query;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -24,7 +25,7 @@ namespace MB.Presentation.MVCCore.Pages
 
         public RedirectToPageResult OnPost(AddComment command)
         {
-            _commentApplication.Add(command);
+            _commentApplication.AddComment(command);
             return RedirectToPage("./ArticleDetails", new {id = command.ArticleId});
         }
     }

@@ -2,5 +2,7 @@
 {
     public interface ICommentApplication
     {
+        void AddComment(AddComment command);
+
     }
 }
