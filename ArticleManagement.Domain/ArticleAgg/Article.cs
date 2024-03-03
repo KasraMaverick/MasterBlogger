@@ -1,4 +1,5 @@
 ﻿using ArticleManagement.Domain.ArticleCategoryAgg;
+using ArticleManagement.Domain.CommentAgg;
 
 namespace ArticleManagement.Domain.ArticleAgg
 {
@@ -14,6 +15,7 @@ namespace ArticleManagement.Domain.ArticleAgg
         
         public long ArticleCategoryId { get; private set; }
         public ArticleCategory ArticleCategory { get; private set; }
+        public ICollection<Comment> Comments { get; private set; }
 
         protected Article()
         {   
@@ -30,6 +32,7 @@ namespace ArticleManagement.Domain.ArticleAgg
             Image = image;
             IsDeleted = false;
             CreatedDate = DateTime.Now; 
+            Comments = new List<Comment>();
         }
         public void Edit(string title, string shortDescription, string image, string content, long articleCategoryId)
         {
