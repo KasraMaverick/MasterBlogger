@@ -16,5 +16,10 @@ namespace ArticleManagement.Application
             var comment = new Comment(command.Name, command.Email, command.Message, command.ArticleId);
             _commentRepository.CreateAndSaveComment(comment);
         }
+
+        public List<CommentViewModel> GetCommentList()
+        {
+            return _commentRepository.GetCommentList();
+        }
     }
 }

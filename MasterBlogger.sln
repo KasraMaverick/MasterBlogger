@@ -23,8 +23,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArticleManagement.Configura
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AM.Presentation.MVCCore", "AM.Presentation.MVCCore\AM.Presentation.MVCCore.csproj", "{E8D77706-BB3A-41EE-B84C-6131B15C632F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AM.Presentation.BlazorWebAssembly", "AM.Presentation.BlazorWebAssembly\AM.Presentation.BlazorWebAssembly.csproj", "{C21F9F44-568D-4EB0-97C9-D467D0A4880A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArticleManagement.Infrastructure.Query", "ArticleManagement.Infrastructure.Query\ArticleManagement.Infrastructure.Query.csproj", "{39375BE7-6FF3-42DD-B925-BB53F54FDE2B}"
 EndProject
 Global
@@ -57,10 +55,6 @@ Global
 		{E8D77706-BB3A-41EE-B84C-6131B15C632F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8D77706-BB3A-41EE-B84C-6131B15C632F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8D77706-BB3A-41EE-B84C-6131B15C632F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C21F9F44-568D-4EB0-97C9-D467D0A4880A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C21F9F44-568D-4EB0-97C9-D467D0A4880A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C21F9F44-568D-4EB0-97C9-D467D0A4880A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C21F9F44-568D-4EB0-97C9-D467D0A4880A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{39375BE7-6FF3-42DD-B925-BB53F54FDE2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{39375BE7-6FF3-42DD-B925-BB53F54FDE2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39375BE7-6FF3-42DD-B925-BB53F54FDE2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
