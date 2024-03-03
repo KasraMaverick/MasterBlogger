@@ -6,6 +6,8 @@ namespace ArticleManagement.Domain.CommentAgg
     {
         void CreateAndSaveComment(Comment entity);
         List<CommentViewModel> GetCommentList();
+        Comment GetComment(long id);
+        void Save();
 
     }
 }

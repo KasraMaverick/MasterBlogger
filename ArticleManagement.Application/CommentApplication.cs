@@ -17,6 +17,20 @@ namespace ArticleManagement.Application
             _commentRepository.CreateAndSaveComment(comment);
         }
 
+        public void Cancel(long id)
+        {
+            var comment = _commentRepository.GetComment(id);
+            comment.Cancel();
+            _commentRepository.Save();
+        }
+
+        public void Confirm(long id)
+        {
+            var comment = _commentRepository.GetComment(id);
+            comment.Confirm();
+            _commentRepository.Save();
+        }
+
         public List<CommentViewModel> GetCommentList()
         {
             return _commentRepository.GetCommentList();

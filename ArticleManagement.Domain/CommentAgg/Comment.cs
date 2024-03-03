@@ -25,6 +25,13 @@ namespace ArticleManagement.Domain.CommentAgg
             CreatedDate = DateTime.Now;
             Status = Statuses.New;
         }
-
+        public void Confirm()
+        {
+            Status = Statuses.Confirmed;
+        }
+        public void Cancel()
+        {
+            Status = Statuses.Canceled;
+        }
     }
 }
