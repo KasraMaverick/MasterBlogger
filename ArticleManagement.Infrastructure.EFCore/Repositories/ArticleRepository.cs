@@ -1,4 +1,5 @@
-﻿using ArticleManagement.Application.Contracts.Article;
+﻿using _0_Framework.Infrastructure;
+using ArticleManagement.Application.Contracts.Article;
 using ArticleManagement.Domain.ArticleAgg;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
@@ -6,31 +7,15 @@ using System.Globalization;
 namespace ArticleManagement.Infrastructure.EFCore.Repositories
 {
     
-    public class ArticleRepository : IArticleRepository
+    public class ArticleRepository : BaseRepository<long, Article>, IArticleRepository
     {
         private readonly ArticleContext _context;
-        public ArticleRepository(ArticleContext context)
+        public ArticleRepository(ArticleContext context) : base(context)
         {
             _context = context;
         }
 
-        public void CreateAndSave(Article entity)
-        {
-            _context.Articles.Add(entity);
-            Save();
-        }
-
-        public bool Exists(string title)
-        {
-            return _context.Articles.Any(a => a.Title == title);
-        }
-
-        public Article Get(long id)
-        {
-            return _context.Articles.FirstOrDefault(x => x.Id == id);
-        }
-
-        public List<ArticleViewModel> GetArticleViewModels()
+        public List<ArticleViewModel> GetList()
         {
             return _context.Articles.Include(x => x.ArticleCategory).Select(x => new ArticleViewModel
             {
@@ -42,9 +27,5 @@ namespace ArticleManagement.Infrastructure.EFCore.Repositories
             }).ToList();
         }
 
-        public void Save()
-        {
-            _context.SaveChanges();
-        }
     }
 }

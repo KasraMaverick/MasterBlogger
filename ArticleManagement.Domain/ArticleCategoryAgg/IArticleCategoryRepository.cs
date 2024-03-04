@@ -1,14 +1,10 @@
-﻿using System.Xml.Serialization;
+﻿using _0_Framework.Infrastructure;
+using System.Xml.Serialization;
 
 namespace ArticleManagement.Domain.ArticleCategoryAgg
 {
-    public interface IArticleCategoryRepository
+    public interface IArticleCategoryRepository : IRepository<long, ArticleCategory>
     {
-        List<ArticleCategory> GetAllArticleCategories();
-        ArticleCategory GetArticleCategory(long id);
-        void Create(ArticleCategory entity);
-        void Save();
-        bool Exists(string title);
-        
+        List<ArticleCategory> GetList();
     }
 }

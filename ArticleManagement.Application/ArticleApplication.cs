@@ -15,14 +15,13 @@ namespace ArticleManagement.Application
         {
            var article = _articleRepository.Get(id);
            article.Activate();
-           _articleRepository.Save();
         }
 
         public void Create(CreateArticle command)
         {
             var article = new Article(command.Title, command.shortDescription, command.Image, command.Content, 
                 command.ArticleCategoryId);
-            _articleRepository.CreateAndSave(article);
+            _articleRepository.Create(article);
 
         }
 
@@ -31,8 +30,6 @@ namespace ArticleManagement.Application
             var article = _articleRepository.Get(command.Id);
             article.Edit(command.Title, command.shortDescription, command.Image, 
                 command.Content, command.ArticleCategoryId);
-
-            _articleRepository.Save();
         }
 
         public EditArticle Get(long id)
@@ -51,14 +48,13 @@ namespace ArticleManagement.Application
 
         public List<ArticleViewModel> GetAllArticles()
         {
-            return _articleRepository.GetArticleViewModels();
+            return _articleRepository.GetList();
         }
 
         public void Remove(long id)
         {
             var article = _articleRepository.Get(id);
             article.Remove();
-            _articleRepository.Save();
         }
     }
 }

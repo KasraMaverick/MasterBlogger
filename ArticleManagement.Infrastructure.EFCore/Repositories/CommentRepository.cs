@@ -1,31 +1,19 @@
-﻿using ArticleManagement.Application.Contracts.Comment;
+﻿using _0_Framework.Infrastructure;
+using ArticleManagement.Application.Contracts.Comment;
 using ArticleManagement.Domain.CommentAgg;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
 namespace ArticleManagement.Infrastructure.EFCore.Repositories
 {
-    public class CommentRepository : ICommentRepository
+    public class CommentRepository : BaseRepository<long, Comment>, ICommentRepository
     {
         private readonly ArticleContext _context;
-        public CommentRepository(ArticleContext context)
+        public CommentRepository(ArticleContext context): base(context) 
         {
-            _context = context;
+            _context= context;
         }
-
-        public void CreateAndSaveComment(Comment entity)
-        {
-            _context.Comments.Add(entity);
-            Save();
-        }
-
-        public Comment GetComment(long id)
-        {
-            return _context.Comments.FirstOrDefault(x => x.Id == id);
-
-        }
-
-        public List<CommentViewModel> GetCommentList()
+        public List<CommentViewModel> GetList()
         {
             return _context.Comments.Include(x => x.Article).Select(x => new CommentViewModel
             {
@@ -38,11 +26,6 @@ namespace ArticleManagement.Infrastructure.EFCore.Repositories
                 Article = x.Article.Title
 
             }).ToList();
-        }
-
-        public void Save()
-        {
-            _context.SaveChanges();
         }
     }
 }

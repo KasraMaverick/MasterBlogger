@@ -1,13 +1,10 @@
-﻿using ArticleManagement.Application.Contracts.Comment;
+﻿using _0_Framework.Infrastructure;
+using ArticleManagement.Application.Contracts.Comment;
 
 namespace ArticleManagement.Domain.CommentAgg
 {
-    public interface ICommentRepository
+    public interface ICommentRepository : IRepository<long, Comment>
     {
-        void CreateAndSaveComment(Comment entity);
-        List<CommentViewModel> GetCommentList();
-        Comment GetComment(long id);
-        void Save();
-
+        List<CommentViewModel> GetList();
     }
 }

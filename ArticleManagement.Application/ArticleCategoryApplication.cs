@@ -17,9 +17,8 @@ namespace ArticleManagement.Application
 
         public void Activate(long id)
         {
-            var articleCategory = _articleCategoryRepository.GetArticleCategory(id);
+            var articleCategory = _articleCategoryRepository.Get(id);
             articleCategory.Activate();
-            _articleCategoryRepository.Save();
         }
 
         public void Create(CreateArticleCategory command)
@@ -30,24 +29,17 @@ namespace ArticleManagement.Application
 
         public List<ArticleCategoryViewModel> GetAllArticleCategories()
         {
-            var articleCategories = _articleCategoryRepository.GetAllArticleCategories();
-            var result = new List<ArticleCategoryViewModel>();
-            foreach(var articleCategory in articleCategories)
+            var articleCategories = _articleCategoryRepository.GetList();
+            return articleCategories.Select(articleCategories => new ArticleCategoryViewModel
             {
-                result.Add(new ArticleCategoryViewModel
-                {
-                    Id = articleCategory.Id,
-                    Title = articleCategory.Title,
-                    IsDeleted = articleCategory.IsDeleted,
-                    CreatedDate = articleCategory.CreatedDate.ToString(CultureInfo.InvariantCulture),
-                });
-            }
-            return result;
+                Id = articleCategories.Id, Title = articleCategories.Title, IsDeleted = articleCategories.IsDeleted,
+                CreatedDate = articleCategories.CreatedDate.ToString(CultureInfo.InvariantCulture),
+            }).OrderByDescending(x => x.Id).ToList();
         }
 
         public RenameArticleCategory GetArticleCategory(long id)
         {
-            var articleCategory = _articleCategoryRepository.GetArticleCategory(id);
+            var articleCategory = _articleCategoryRepository.Get(id);
             return new RenameArticleCategory
             {
                 Id = articleCategory.Id,
@@ -57,16 +49,14 @@ namespace ArticleManagement.Application
 
         public void Remove(long id)
         {
-            var articleCategory = _articleCategoryRepository.GetArticleCategory(id);
-            articleCategory.Remove();
-            _articleCategoryRepository.Save();
-        }
+            var articleCategory = _articleCategoryRepository.Get(id);
+            articleCategory.Remove();        }
 
         public void Rename(RenameArticleCategory command)
         {
-            var articleCategory = _articleCategoryRepository.GetArticleCategory(command.Id);
+            var articleCategory = _articleCategoryRepository.Get(command.Id);
             articleCategory.Rename(command.Title);
-            _articleCategoryRepository.Save();
+            
         }
     }
 }

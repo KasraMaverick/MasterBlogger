@@ -11,7 +11,7 @@ namespace ArticleManagement.Domain.ArticleCategoryAgg.Services
         }
         public void CheckIfRecordAlreadyExists(string title)
         {
-            if(_articleCategoryRepository.Exists(title))
+            if(_articleCategoryRepository.Exists(x => x.Title == title))
             {
                 throw new DuplicatedRecordException("This record already exists in the database");
             }
