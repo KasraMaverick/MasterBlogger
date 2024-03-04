@@ -1,17 +1,16 @@
-﻿using ArticleManagement.Domain.ArticleCategoryAgg;
+﻿using _0_Framework.Domain;
+using ArticleManagement.Domain.ArticleCategoryAgg;
 using ArticleManagement.Domain.CommentAgg;
 
 namespace ArticleManagement.Domain.ArticleAgg
 {
-    public class Article
+    public class Article : DomainBase<long>
     {
-        public long Id { get; private set; }
         public string Title { get; private set; }
         public string ShortDescription { get; private set; }
         public string Image { get; private set; }
         public string Content { get; private set; }
         public bool IsDeleted { get; private set; }
-        public DateTime CreatedDate { get; private set; }
         
         public long ArticleCategoryId { get; private set; }
         public ArticleCategory ArticleCategory { get; private set; }
@@ -31,7 +30,6 @@ namespace ArticleManagement.Domain.ArticleAgg
             ArticleCategoryId = articleCategoryId;
             Image = image;
             IsDeleted = false;
-            CreatedDate = DateTime.Now; 
             Comments = new List<Comment>();
         }
         public void Edit(string title, string shortDescription, string image, string content, long articleCategoryId)

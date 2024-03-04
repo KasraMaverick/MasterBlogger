@@ -1,14 +1,13 @@
-﻿using ArticleManagement.Domain.ArticleAgg;
+﻿using _0_Framework.Domain;
+using ArticleManagement.Domain.ArticleAgg;
 using ArticleManagement.Domain.ArticleCategoryAgg.Services;
 
 namespace ArticleManagement.Domain.ArticleCategoryAgg
 {
-    public class ArticleCategory
+    public class ArticleCategory : DomainBase<long>
     {
-        public long Id { get; private set; }
         public string Title { get;private set; }   
         public bool IsDeleted { get; private set; }
-        public DateTime CreatedDate { get; private set; }
         public ICollection<Article> Articles { get; private set; }
 
         protected ArticleCategory() 
@@ -21,7 +20,6 @@ namespace ArticleManagement.Domain.ArticleCategoryAgg
             validatorService.CheckIfRecordAlreadyExists(title);
             Title = title;
             IsDeleted = false;
-            CreatedDate = DateTime.Now;
             Articles = new List<Article>();
         }
         public void Rename(string title)
