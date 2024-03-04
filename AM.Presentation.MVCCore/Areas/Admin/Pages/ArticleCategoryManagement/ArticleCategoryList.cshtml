@@ -1,4 +1,8 @@
-﻿@model AM.Presentation.MVCCore.Areas.Admin.Pages.ArticleCategoryManagement.ArticleCategoryListModel
+﻿@page
+
+@using AM.Presentation.MVCCore.Areas.Admin.Pages.ArticleCategoryManagement;
+
+@model ArticleCategoryListModel
 
 <div class="card">
     <div class="card-header">
@@ -35,18 +39,18 @@
                         </td>
                         <td>@articleCategory.CreatedDate</td>
                         <td>
-                            <a class="btn btn-warning float-left m-3" asp-page="./EditArticleCategory" asp-route-id="@articleCategory.Id">Rename</a>
+                            <a class="btn btn-warning float-left m-1" asp-page="./EditArticleCategory" asp-route-id="@articleCategory.Id">Rename</a>
                             @if (articleCategory.IsDeleted)
                             {
                                 <form method="post" asp-page-handler="Activate" class="float-left">
-                                    <button class="btn btn-success">Activate</button>
+                                    <button class="btn btn-success float-left m-1">Activate</button>
                                     <input type="hidden" name="id" value="@articleCategory.Id" />
                                 </form>
                             }
                             else
                             {
                                 <form method="post" asp-page-handler="Remove" class="float-left">
-                                    <button class="btn btn-danger">Remove</button>
+                                    <button class="btn btn-danger float-left m-1">Remove</button>
                                     <input type="hidden" name="id" value="@articleCategory.Id" />
                                 </form>
                             }

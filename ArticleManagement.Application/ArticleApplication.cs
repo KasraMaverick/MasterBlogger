@@ -20,7 +20,8 @@ namespace ArticleManagement.Application
 
         public void Create(CreateArticle command)
         {
-            var article = new Article(command.Title, command.shortDescription, command.Image, command.Content, command.ArticleCategoryId);
+            var article = new Article(command.Title, command.shortDescription, command.Image, command.Content, 
+                command.ArticleCategoryId);
             _articleRepository.CreateAndSave(article);
 
         }

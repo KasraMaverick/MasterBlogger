@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-Bootstrapper.Config(builder.Services, builder.Configuration.GetConnectionString("MasterBloogerDb"));
+Bootstrapper.Config(builder.Services, builder.Configuration.GetConnectionString("MasterBloggerDb"));
 
 var app = builder.Build();
 

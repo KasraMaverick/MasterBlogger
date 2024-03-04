@@ -1,4 +1,6 @@
-﻿@model AM.Presentation.MVCCore.Areas.Admin.Pages.ArticleManagement.CreateArticleModel
+﻿@page
+
+@model AM.Presentation.MVCCore.Areas.Admin.Pages.ArticleManagement.CreateArticleModel
 
 <div class="card">
     <div class="card-header">
@@ -18,7 +20,7 @@
                     <div class="col-md-6 col-sm-12">
                         <div class="form-group">
                             <label for="ShortDescription" class="control-label">Short Description: </label>
-                            <textarea name="ShortDescription" id="ShortDescription" class="form-control"></textarea>
+                            <textarea name="ShortDescription" id="ShortDescription" class="form-control" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12">
@@ -35,8 +37,8 @@
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div class="form-group">
-                            <label for="ShortDescription" class="control-label">Short Description: </label>
-                            <select asp-items="Model.ArticleCategories" name="ArticleCateogryId" id="ArticleCategoryId">
+                            <label for="Content" class="control-label">Article Category: </label>
+                            <select asp-items="Model.ArticleCategories" name="ArticleCateogryId" id="ArticleCategoryId" class="form-control">
                                 <option value="0">Select Article Category</option>
                             </select>
                         </div>
