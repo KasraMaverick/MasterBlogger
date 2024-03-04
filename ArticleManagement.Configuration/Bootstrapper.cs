@@ -1,4 +1,5 @@
-﻿using ArticleManagement.Application;
+﻿using _0_Framework.Infrastructure;
+using ArticleManagement.Application;
 using ArticleManagement.Application.Contracts.Article;
 using ArticleManagement.Application.Contracts.ArticleCategory;
 using ArticleManagement.Application.Contracts.Comment;
@@ -19,6 +20,7 @@ namespace ArticleManagement.Configuration
     {
         public static void Config(IServiceCollection services, string connectionString)
         {
+
             services.AddTransient<IArticleCategoryApplication, ArticleCategoryApplication>();
             services.AddTransient<IArticleCategoryRepository, ArticleCategoryRepository>();
             services.AddTransient<IArticleCategoryValidatorService, ArticleCategoryValidatorService>();
@@ -31,6 +33,8 @@ namespace ArticleManagement.Configuration
             services.AddTransient<ICommentRepository, CommentRepository>();
 
             services.AddTransient<IArticleQuery, ArticleQuery>();
+
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             services.AddDbContext<ArticleContext>(options => options.UseSqlServer(connectionString));
         }

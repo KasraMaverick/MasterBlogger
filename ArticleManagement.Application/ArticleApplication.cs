@@ -1,35 +1,43 @@
-﻿using ArticleManagement.Application.Contracts.Article;
+﻿using _0_Framework.Infrastructure;
+using ArticleManagement.Application.Contracts.Article;
 using ArticleManagement.Domain.ArticleAgg;
 
 namespace ArticleManagement.Application
 {
     public class ArticleApplication : IArticleApplication
     {
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IArticleRepository _articleRepository;
-        public ArticleApplication(IArticleRepository articleRepository)
+        public ArticleApplication(IArticleRepository articleRepository, IUnitOfWork unitOfWork)
         {
             _articleRepository = articleRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public void Activate(long id)
         {
+            _unitOfWork.BeginTran();
            var article = _articleRepository.Get(id);
            article.Activate();
+            _unitOfWork.CommitTran();
         }
 
         public void Create(CreateArticle command)
         {
+            _unitOfWork.BeginTran();
             var article = new Article(command.Title, command.shortDescription, command.Image, command.Content, 
                 command.ArticleCategoryId);
             _articleRepository.Create(article);
-
+            _unitOfWork.CommitTran();
         }
 
         public void Edit(EditArticle command)
         {
+            _unitOfWork.BeginTran();
             var article = _articleRepository.Get(command.Id);
             article.Edit(command.Title, command.shortDescription, command.Image, 
                 command.Content, command.ArticleCategoryId);
+            _unitOfWork.CommitTran();
         }
 
         public EditArticle Get(long id)
@@ -53,8 +61,10 @@ namespace ArticleManagement.Application
 
         public void Remove(long id)
         {
+            _unitOfWork.BeginTran();
             var article = _articleRepository.Get(id);
             article.Remove();
+            _unitOfWork.CommitTran();
         }
     }
 }
